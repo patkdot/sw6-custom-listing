@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="CustomListing\Subscriber\Storefront\LoginSubscriber">
+            <argument type="service" id="CustomListing\Service\BoughtVariantsService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="CustomListing\Subscriber\Storefront\OrderSubscriber">
+            <argument type="service" id="CustomListing\Service\BoughtVariantsService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="CustomListing\Service\BoughtVariantsService">
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="request_stack"/>
+        </service>
+
+    </services>
+</container>

@@ -1,0 +1,17 @@
+{% sw_extends "@Storefront/storefront/component/product/card/badges.html.twig" %}
+
+{% block component_product_badges_new %}
+    {{ parent() }}
+    {% set boughtVariants = app.session.get('boughtVariants') %}
+    {% for boughtProductNumber, boughtProductQuantity in boughtVariants %}
+        {% if boughtProductNumber == product.getProductNumber %}
+            <div>
+                <div class="badge badge-danger">
+                    <span class="badge bg-success badge-new">
+                    {{ "listing.boxLabelBought"|trans|sw_sanitize }} {{ boughtProductQuantity }}
+                    </span>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
