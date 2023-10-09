@@ -11,7 +11,7 @@ class LoginSubscriber implements EventSubscriberInterface
 {
 
     public function __construct(
-        protected BoughtVariantsService $listingService,
+        protected BoughtVariantsService $boughtVariantsService,
     ) {
     }
 
@@ -31,9 +31,9 @@ class LoginSubscriber implements EventSubscriberInterface
         if ($customer === null) {
             return;
         }
-        $boughtVariants = $this->listingService
+        $boughtVariants = $this->boughtVariantsService
             ->getBoughtVariantsForCustomer($customer, $event->getContext());
-        $this->listingService->clearBoughtVariantsSessionAttribute();
-        $this->listingService->setBoughtVariantsSessionAttribute($boughtVariants);
+        $this->boughtVariantsService->clearBoughtVariantsSessionAttribute();
+        $this->boughtVariantsService->setBoughtVariantsSessionAttribute($boughtVariants);
     }
 }

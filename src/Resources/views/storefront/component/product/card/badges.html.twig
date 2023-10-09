@@ -2,16 +2,26 @@
 
 {% block component_product_badges_new %}
     {{ parent() }}
-    {% set boughtVariants = app.session.get('boughtVariants') %}
-    {% for boughtProductNumber, boughtProductQuantity in boughtVariants %}
-        {% if boughtProductNumber == product.getProductNumber %}
-            <div>
-                <div class="badge badge-danger">
+
+    <div>
+        <div class="badge badge-danger badge-bought-variants" style="display: none">
                     <span class="badge bg-success badge-new">
-                    {{ "listing.boxLabelBought"|trans|sw_sanitize }} {{ boughtProductQuantity }}
+                        {{ "listing.boxLabelBought"|trans|sw_sanitize }}
+                        <span id="bought-variant-{{ product.getProductNumber }}"></span>
                     </span>
-                </div>
-            </div>
-        {% endif %}
-    {% endfor %}
+        </div>
+    </div>
+
+    {#    {% set boughtVariants = app.session.get('boughtVariants') %} #}
+    {#    {% for boughtProductNumber, boughtProductQuantity in boughtVariants %} #}
+    {#        {% if boughtProductNumber == product.getProductNumber %} #}
+    {#            <div> #}
+    {#                <div class="badge badge-danger"> #}
+    {#                    <span class="badge bg-success badge-new"> #}
+    {#                    {{ "listing.boxLabelBought"|trans|sw_sanitize }} {{ boughtProductQuantity }} #}
+    {#                    </span> #}
+    {#                </div> #}
+    {#            </div> #}
+    {#        {% endif %} #}
+    {#    {% endfor %} #}
 {% endblock %}

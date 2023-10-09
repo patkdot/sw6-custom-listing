@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class BoughtVariantsService
 {
-    const BOUGHT_VARIANTS_SESSION_KEY = 'boughtVariants';
+    public const BOUGHT_VARIANTS_SESSION_KEY = 'boughtVariants';
 
     public function __construct(
         protected EntityRepository $orderRepository,
@@ -58,6 +58,7 @@ class BoughtVariantsService
         }
         $this->requestStack->getCurrentRequest()
             ?->getSession()->set(self::BOUGHT_VARIANTS_SESSION_KEY, $boughtVariantsSession);
+//        dd($this->requestStack->getCurrentRequest()?->getSession()->get(self::BOUGHT_VARIANTS_SESSION_KEY));
     }
 
     public function buildBoughtVariantsFromOrder(OrderEntity $order, array $boughtVariants = []): array

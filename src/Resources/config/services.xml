@@ -21,5 +21,11 @@
             <argument type="service" id="request_stack"/>
         </service>
 
+        <service id="CustomListing\Controller\AjaxController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
     </services>
 </container>
