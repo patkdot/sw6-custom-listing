@@ -4,6 +4,9 @@
     {{ parent() }}
     <script>
         window.addEventListener("load", (event) => {
+            if (document.getElementsByClassName('badge-bought-variants').length === 0) {
+                return;
+            }
             const httpRequest = new XMLHttpRequest();
             httpRequest.open("GET", "/bought-variants", false);
             httpRequest.send();
@@ -11,7 +14,6 @@
             boughtVariants = Object.entries(boughtVariants);
             boughtVariants.forEach((boughtVariant) => {
                 let [productNumber, quantity] = boughtVariant;
-                console.info(productNumber, quantity);
                 let boughtVariantElement = document.getElementById("bought-variant-" + productNumber);
                 boughtVariantElement.innerHTML = quantity;
                 boughtVariantElement.parentElement.parentElement.style.display = "initial";

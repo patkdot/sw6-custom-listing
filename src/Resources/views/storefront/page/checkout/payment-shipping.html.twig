@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+{% block base_header %}
+    {% sw_include '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
+{% endblock %}
+
+{% block base_navigation %}{% endblock %}
+
+{% block page_checkout_aside %}
+    <a href="{{ url('frontend.checkout.confirm.page') }}"> {{ "checkout.proceedToConfirm"|trans }}</a>
+{% endblock %}
+
+{% block page_checkout_main_content %}
+
+    {% block page_checkout_confirm_payment_shipping %}
+        <div class="confirm-payment-shipping">
+            <div class="row">
+                {% block page_checkout_confirm_payment %}
+                    <div class="col-sm-6 confirm-payment">
+                        {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+                    </div>
+                {% endblock %}
+
+                {% block page_checkout_confirm_shipping %}
+                    {% set PHYSICAL_STATE = constant('Shopware\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
+                    {% if page.cart.lineItems.hasLineItemWithState(PHYSICAL_STATE) %}
+                        <div class="col-sm-6 confirm-shipping">
+                            {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+
+{% endblock %}
+
+{% block base_footer %}
+    {% sw_include '@Storefront/storefront/layout/footer/footer-minimal.html.twig' %}
+{% endblock %}
