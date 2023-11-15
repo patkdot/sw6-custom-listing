@@ -8,7 +8,6 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class CustomerPhoneNumberValidator extends ConstraintValidator
 {
-
     public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof CustomerPhoneNumber) {
